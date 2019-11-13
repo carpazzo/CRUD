@@ -4,6 +4,7 @@ Still need to implent upload image for new visitor.
 The image is encoded but not save in the database :/ ,thats where i got stuck.
 the display for error handling bugs sometimes, so still need to implement.
 Overall the bassic functions is in place and working.
+All the php scripts was tested using postman
 
 Oportunitie for improvment 
 
