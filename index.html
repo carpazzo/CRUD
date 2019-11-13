@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <title>CRUD CASE</title>
+</head>
+<body>
+<div id="app">
+    <!-- App top -->
+    <div class="container-fluid">
+        <div class="row bg-dark">
+            <div class="col-lg-12">
+                <p class="text-center text-light display-4 pt-3" style="font-size:35px">Visitor registration</p>
+            </div>
+        </div>
+    </div>
+<!-- Header with button to add new visitor -->
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-lg-6">
+                <h3 class="text-warning text-center"> Check all the Registered Visitors </h3>
+            </div>
+            <div class="col-lg-6">
+                <button class="btn btn-dark float-right" @click = "displayAddOption = true">
+                    Add New Visitor
+                </button>
+            </div>
+        </div>
+      
+        <hr class="bg-info">
+
+        <!-- Success and Error msg display ,hidden by default / not working*-->
+        <div class="alert alert-danger" v-if="errorMsg"> {{ errorMsg }} </div>
+        <div class="alert alert-success" v-if="successMsg"> {{ successMsg }} </div>
+
+        <!-- Table description -->
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Iterate using vue directiveto display data -->
+                <table class="table table-bordered table-hover table-dark"  v-for="visitor in visitors">
+                    <thead class="thead-dark">
+                        <tr class="text-center bg-info text-light">
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Telephone</th>
+                            <th>E-mail</th>
+                            <th>Image</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>              
+                    </thead>
+                    <tbody>
+                        <tr class="text-center" >                         
+                            <td>{{ visitor.name }}</td>
+                            <td>{{ visitor.surname }}</td>
+                            <td>{{ visitor.phone }}</td>
+                            <td>{{ visitor.email }}</td>
+                            <td>{{ visitor.image }}</td>
+                            <td><a href="#" @click = "displayEditOption = true; selectedToChange(visitor);">Edit</a></td>
+                            <td><a href="#" @click = "displayDeleteOption = true; selectedToChange(visitor);">Delete</a></td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add New Visitor Modal -->
+<div id="overlay" v-if="displayAddOption">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <h5 class="modal-title ">New Visitor</h5>
+                <button type="button" class="close" @click="displayAddOption = false"> X </button>
+            </div>
+            <div class="modal-body p-4">
+                <form action="#" method="post">
+                    <input type="text" name="name" class="form-control form-control-lg" placeholder="Name" v-model="newVisitor.name">
+                </form>
+            </div>
+            <div class="modal-body p-4">
+                <form action="#" method="post">
+                    <input type="text" name="surname" class="form-control form-control-lg" placeholder="Surname" v-model="newVisitor.surname">
+                </form>
+            </div>
+            <div class="modal-body p-4">
+                <form action="#" method="post">
+                    <input type="text" name="phone" class="form-control form-control-lg" placeholder="Phone" v-model="newVisitor.phone">
+                </form>
+            </div>
+            <div class="modal-body p-4">
+                <form action="#" method="post">
+                    <input type="text" name="email" class="form-control form-control-lg" placeholder="E-mail"  v-model="newVisitor.email">
+                </form>
+            </div>
+            <div class="modal-body p-4">
+                <form action="#" method="post" enctype="multipart/form-data">
+                    <label>Select Image</label>
+                    <input type="file" name="image" >
+                </form>
+            </div>
+                     
+            <div class="form-group">
+                <button class="btn btn-success btn-block btn-lg " @click="displayAddOption = false, addVisitor();" >Add Visitor</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Update a Visitor profile -->
+<div id="overlay" v-if="displayEditOption">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Change Visitor Info</h5>
+                <button type="button" class="close" @click="displayEditOption = false">X</button>
+            </div>
+            <div class="modal-body p-4">
+                <form action="#" method="post">
+                    <input type="text" name="name" class="form-control form-control-lg" v-model="selectedVisitor.name" >
+                </form>
+            </div>
+            <div class="modal-body p-4">
+                <form action="#" method="post">
+                    <input type="text" name="surname" class="form-control form-control-lg" v-model="selectedVisitor.surname" >
+                </form>
+            </div>
+            
+            <div class="modal-body p-4">
+                <form action="#" method="post">
+                    <input type="text" name="phone" class="form-control form-control-lg" v-model="selectedVisitor.phone">
+                </form>
+            </div>
+            <div class="modal-body p-4">
+                <form action="#" method="post">
+                    <input type="text" name="email" class="form-control form-control-lg" v-model="selectedVisitor.email">
+                </form>
+            </div>
+            <div class="modal-body p-4">
+                <form action="#" method="post">
+                    <input type="file" name="image" class="form-control">
+                </form>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-info btn-block btn-lg" @click="displayEditOption= false, updateVisitor();">EDIT</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- delete a visitor -->
+<div id="overlay" v-if="displayDeleteOption">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title text-center">Delete Visitor</h3>
+                    <button type="button" class="close" @click="displayDeleteOption = false">X</button>
+                </div>
+                <h4 class="text-center">You are about to delete!! </h4>
+                <h5 class="text-center">{{ selectedVisitor.name +" "+ selectedVisitor.surname }}</h5>
+                <hr>
+                <button class="btn btn-danger " @click="displayDeleteOption= false; deleteVisitor();">DELETE</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type= "text/javascript" src="./Script/main.js"></script>
+</body>
+</html>
