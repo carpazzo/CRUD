@@ -38,10 +38,9 @@ var app = new Vue({
             app.selectedVisitor = visitor;
         },
 
-
         addVisitor(){
             var formData = app.toFormData(app.newVisitor)
-            axios.post("http://localhost:8080/CRUD/API/createVisitor.php?action=create", formData).then(function(response){
+            axios.post("http://localhost:8080/CRUD/API/createVisitor.php?action=create", formData,{headers:{'Content-Type':'multipart/form-data'}}).then(function(response){
                 app.newVisitor = { name: "",surname:"",phone: "",email:"",image:"" };
                 if(response.data.error){
                     app.errorMsg = response.data.message;
