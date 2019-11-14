@@ -1,5 +1,9 @@
-var app = new Vue({
+import Vue from 'vue'
+import App from './App.vue'
+
+new Vue({
     el: '#app',
+    render: h=> h(App),
     data: {
         errorMsg: "",
         successMsg: "",
@@ -81,4 +85,4 @@ var app = new Vue({
         },
 
     }
-});
+}).$mount('#app');

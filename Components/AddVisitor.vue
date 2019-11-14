@@ -1,5 +1,5 @@
 <template>
-  <!-- Add New Visitor Modal -->
+  <!-- Add New Visitor -->
     <div id="overlay" v-if="displayAddOption">
         <div class="modal-dialog ">
             <div class="modal-content">

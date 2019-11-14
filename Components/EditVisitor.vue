@@ -15,13 +15,12 @@
                         <input type="text" name="email" class="form-control form-control-lg" v-model="selectedVisitor.email">
                     </form>
                 </div>
-            
-                <div class="modal-body p-4">
-                    <form action="#" method="post" enctype="multipart/form-data">
-                        <label>Select Image</label>
-                        <input type="file" name="image" class="form-control">
-                    </form>
-                </div>
+                     <div class="modal-body p-4">
+                        <form action="#" method="post" enctype="multipart/form-data">
+                            <label>Select Image</label>
+                            <input type="file" name="image" class="form-control">
+                        </form>
+                    </div>
                 <div class="form-group">
                     <button class="btn btn-info btn-block btn-lg" @click="displayEditOption= false, updateVisitor();">EDIT</button>
                 </div>

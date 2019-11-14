@@ -1,14 +1,11 @@
 <template>
-    <div id="app">
-        
+    <div>
         <Header></Header>
         <display-visitor></display-visitor>
         <add-visitor></add-visitor>
         <edit-visitor></edit-visitor>
-        <delete-visitor></delete-visitor>
-       
-    </div>
-    
+        <delete-visitor></delete-visitor>     
+    </div>   
 </template>
 
 <script>
@@ -22,12 +19,11 @@ export default {
     name:'app',
 
     components: {
-    Header,
-    DisplayVisitor,
-    AddVisitor,
-    EditVisitor,
-    DeleteVisitor
-
+        Header,
+        DisplayVisitor,
+        AddVisitor,
+        EditVisitor,
+        DeleteVisitor,
     },
 
 }

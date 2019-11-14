@@ -22,18 +22,15 @@
         </div>
       
         <hr class="bg-info">
-
         <!-- Success and Error msg display ,hidden by default / not working*-->
         <div class="alert alert-danger" v-if="errorMsg"> {{ errorMsg }} </div>
         <div class="alert alert-success" v-if="successMsg"> {{ successMsg }} </div>
-
     </div> 
 </template>
 
 <script>
 export default {
     name: "Header",
-
 }
 </script>
 
