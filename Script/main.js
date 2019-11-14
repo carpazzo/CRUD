@@ -11,7 +11,7 @@ var app = new Vue({
         selectedVisitor:{},
        
     },
-    mounted: function(){
+    mounted(){
         this.getAllVisitors();
     },
     methods: {
