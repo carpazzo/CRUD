@@ -18,6 +18,7 @@
         
         if($sql){
             return $result['message'] = "Deleted";   
+            console.log("deleted working"); 
         }else{
             $result['error'] = true;
             return  $result['message'] = "Can't Be deleted!";

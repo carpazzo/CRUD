@@ -23,12 +23,13 @@
         $sql = $conn->query("INSERT INTO visitors (name,surname,phone,email,image) VALUES ('$name','$surname','$phone','$email','$image') ");
         
         if($sql){
-            return $result['message'] = "New Visitor Added!";   
+            return $result['message'] = "New Visitor Added!";
+            console.log("testing console is here");   
         }else{
             $result['error'] = true;
             return $result['message'] = "Failed to add Visitor";
         }
-    }
-    
 
+    }
+       
 ?>

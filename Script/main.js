@@ -9,8 +9,7 @@ var app = new Vue({
         displayDeleteOption: false,
         visitors:[],
         newVisitor:{ name: "",surname:"",phone: "",email:"",image:""},
-        selectedVisitor:{},
-       
+        selectedVisitor:{},   
     },
     mounted(){
         this.getAllVisitors();
@@ -41,7 +40,7 @@ var app = new Vue({
 
         addVisitor(){
             var formData = app.toFormData(app.newVisitor)
-            axios.post("http://localhost:8000/CRUD/API/createVisitor.php?action=create", formData,/*{headers:{'Content-Type':'multipart/form-data'}}*/).then(function(response){
+            axios.post("http://localhost:8000/CRUD/API/createVisitor.php?action=create", formData,{headers:{'Content-Type':'multipart/form-data'}}).then(function(response){
                 app.newVisitor = { name: "",surname:"",phone: "",email:"",image:"" };
                 if(response.data.error){
                     app.errorMsg = response.data.message;
