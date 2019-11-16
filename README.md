@@ -1,15 +1,16 @@
-# CRUD
+# Create Read Update Delete Application  
 Functional application CRUD using PHP Vue.JS  
-Still need to implent upload image for new visitor. 
-The image is encoded but not save in the database :/ ,thats where i got stuck.
-the display for error handling bugs sometimes, so still need to implement.
-Overall the bassic functions is in place and working.
-All the php scripts was tested using Postman
+Still need to implent upload image for new visitor.   
+The image is encoded but not save in the database :/ ,thats where i got stuck.  
+the display for error handling bugs sometimes, so still need to implement.  
+Overall the bassic functions is in place and working.  
+All the php scripts was tested using Postman  
 
 #Improvement Possibilities
 
+-Working on form validation and error Handling.  
 -search bar is neen added but has no functionality yet.  
--use vue components, vue Router to scale up the application (This implementation is on the new crud project)  
+-use vue components, vue Router to scale up the application (This implementation is on the new crud project)    
 -after get the image uploading , probably change the updateVisitor to also be able to change the image.  
 
 **Database**   
