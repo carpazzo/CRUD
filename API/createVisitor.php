@@ -19,16 +19,27 @@
         $temp = $_FILES['image'];
         //encode the file in to base64 and store in a temporary variable, but its not saving on the database as base64 string*
         $image = base64_encode($temp);
-       
-        $sql = $conn->query("INSERT INTO visitors (name,surname,phone,email,image) VALUES ('$name','$surname','$phone','$email','$image') ");
-        
-        if($sql){
-            return $result['message'] = "New Visitor Added!";
-            console.log("testing console is here");   
-        }else{
-            $result['error'] = true;
-            return $result['message'] = "Failed to add Visitor";
+        $validation = "";
+
+        if(empty($name||$email) ){
+            $validation = "Name or Email Invalid";
+            $result['message'] = "Name/Email Invalid"; 
+            return $validation;
         }
+        else {
+           $sql = $conn->query("INSERT INTO visitors (name,surname,phone,email,image) VALUES ('$name','$surname','$phone','$email','$image') ");
+
+           if($sql){
+            $result['message'] = "New Visitor Added!";
+             
+            }else{
+            $result['error'] = true;
+            $result['message'] = "Failed to add Visitor";
+        }
+
+        }
+            
+       
 
     }
        

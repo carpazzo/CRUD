@@ -2,8 +2,8 @@ var app = new Vue({
     el: '#app',
    
     data: {
-        errorMsg: "",
-        successMsg: "",
+        errorMsg: "error msg test",
+        successMsg: "sucess msg test",
         adm: false,
         displayAddOption: false,
         displayEditOption: false,
