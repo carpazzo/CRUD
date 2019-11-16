@@ -1,9 +1,6 @@
-import Vue from 'vue'
-import App from './App.vue'
-
-new Vue({
+var app = new Vue({
     el: '#app',
-    render: h=> h(App),
+   
     data: {
         errorMsg: "",
         successMsg: "",
@@ -20,7 +17,7 @@ new Vue({
     },
     methods: {
         getAllVisitors(){
-            axios.get("http://localhost:8080/CRUD/API/displayAllVisitors.php?action=read").then(function(response){
+            axios.get("http://localhost:8000/CRUD/API/displayAllVisitors.php?action=read").then(function(response){
                 if(response.data.error){
                     app.errorMsg = response.data.message;
                 }
@@ -44,7 +41,7 @@ new Vue({
 
         addVisitor(){
             var formData = app.toFormData(app.newVisitor)
-            axios.post("http://localhost:8080/CRUD/API/createVisitor.php?action=create", formData,{headers:{'Content-Type':'multipart/form-data'}}).then(function(response){
+            axios.post("http://localhost:8000/CRUD/API/createVisitor.php?action=create", formData,/*{headers:{'Content-Type':'multipart/form-data'}}*/).then(function(response){
                 app.newVisitor = { name: "",surname:"",phone: "",email:"",image:"" };
                 if(response.data.error){
                     app.errorMsg = response.data.message;
@@ -58,7 +55,7 @@ new Vue({
 
         updateVisitor(){
             var formData = app.toFormData(app.selectedVisitor);
-            axios.post("http://localhost:8080/CRUD/API/updateVisitor.php?action=update",formData).then(function(response){
+            axios.post("http://localhost:8000/CRUD/API/updateVisitor.php?action=update",formData).then(function(response){
                 app.selectedVisitor = {};
                 if(response.data.error){
                     app.errorMsg = response.data.message;
@@ -72,7 +69,7 @@ new Vue({
 
         deleteVisitor(){
             var formData = app.toFormData(app.selectedVisitor);
-            axios.post("http://localhost:8080/CRUD/API/deleteVisitor.php?action=delete",formData).then(function(response){
+            axios.post("http://localhost:8000/CRUD/API/deleteVisitor.php?action=delete",formData).then(function(response){
                 app.selectedVisitor = {};
                 if(response.data.error){
                     app.errorMsg = response.data.message;
@@ -83,6 +80,5 @@ new Vue({
                 }   
             });
         },
-
     }
-}).$mount('#app');
+})
