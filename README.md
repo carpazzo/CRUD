@@ -1,5 +1,5 @@
 # Create Read Update Delete Application  
-Functional application CRUD using PHP Vue.JS  
+Functional application CRUD using PHP, Bootstrap,MySql and Vue.JS  
 Still need to implent upload image for new visitor.   
 The image is encoded but not save in the database :/ ,thats where i got stuck.  
 the display for error handling bugs sometimes, so still need to implement.  
