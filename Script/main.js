@@ -4,6 +4,7 @@ var app = new Vue({
     data: {
         errorMsg: "",
         successMsg: "",
+        adm: false,
         displayAddOption: false,
         displayEditOption: false,
         displayDeleteOption: false,
@@ -15,6 +16,11 @@ var app = new Vue({
         this.getAllVisitors();
     },
     methods: {
+
+        toggle(){
+            this.adm = !this.adm;
+        },
+
         getAllVisitors(){
             axios.get("http://localhost:8000/CRUD/API/displayAllVisitors.php?action=read").then(function(response){
                 if(response.data.error){
