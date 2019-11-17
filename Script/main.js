@@ -2,15 +2,17 @@ var app = new Vue({
     el: '#app',
    
     data: {
-        errorMsg: "error msg test",
-        successMsg: "sucess msg test",
+        errorMsg: "",
+        successMsg: "",
         adm: false,
         displayAddOption: false,
         displayEditOption: false,
         displayDeleteOption: false,
         visitors:[],
         newVisitor:{ name: "",surname:"",phone: "",email:"",image:""},
-        selectedVisitor:{},   
+        selectedVisitor:{}, 
+        selectedFile: null 
+                   
     },
     mounted(){
         this.getAllVisitors();
@@ -21,6 +23,11 @@ var app = new Vue({
             this.adm = !this.adm;
         },
 
+        onFileSelected(event){
+            this.selectedFile = event.target.files[0];
+            console.log(event)
+        },
+      
         getAllVisitors(){
             axios.get("http://localhost:8000/CRUD/API/displayAllVisitors.php?action=read").then(function(response){
                 if(response.data.error){
@@ -46,8 +53,8 @@ var app = new Vue({
 
         addVisitor(){
             var formData = app.toFormData(app.newVisitor)
-            axios.post("http://localhost:8000/CRUD/API/createVisitor.php?action=create", formData,{headers:{'Content-Type':'multipart/form-data'}}).then(function(response){
-                app.newVisitor = { name: "",surname:"",phone: "",email:"",image:"" };
+            axios.post("http://localhost:8000/CRUD/API/createVisitor.php?action=create",formData,{headers:{'Content-Type':'multipart/form-data'}}).then(function(response){
+                app.newVisitor = { name: "",surname:"",phone: "",email:"",image:""};
                 if(response.data.error){
                     app.errorMsg = response.data.message;
                 }
@@ -60,7 +67,7 @@ var app = new Vue({
 
         updateVisitor(){
             var formData = app.toFormData(app.selectedVisitor);
-            axios.post("http://localhost:8000/CRUD/API/updateVisitor.php?action=update",formData).then(function(response){
+            axios.post("http://localhost:8000/CRUD/API/updateVisitor.php?action=update",formData,{headers:{'Content-Type':'multipart/form-data'}}).then(function(response){
                 app.selectedVisitor = {};
                 if(response.data.error){
                     app.errorMsg = response.data.message;

@@ -17,25 +17,25 @@
         $phone = $_POST['phone'];
         $email = $_POST['email'];  
         $temp = $_FILES['image'];
-        //encode the file in to base64 and store in a temporary variable, but its not saving on the database as base64 string*
-        $image = base64_encode($temp);
-        $validation = "";
-
-        if(empty($name||$email) ){
-            $validation = "Name or Email Invalid";
-            $result['message'] = "Name/Email Invalid"; 
-            return $validation;
+        $filename = $_FILES['image']['name'];
+        //encode the file in to base64 and store in the database, but its not saving on the database as base64 string*
+        $image = base64_encode($filename);
+        
+ 
+        if(empty($name) ){
+            $result['message'] = "Name/Email Invalid";             
         }
         else {
            $sql = $conn->query("INSERT INTO visitors (name,surname,phone,email,image) VALUES ('$name','$surname','$phone','$email','$image') ");
 
            if($sql){
             $result['message'] = "New Visitor Added!";
-             
+            
             }else{
             $result['error'] = true;
             $result['message'] = "Failed to add Visitor";
-        }
+            
+            }
 
         }
             
