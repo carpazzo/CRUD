@@ -11,11 +11,18 @@ var app = new Vue({
         visitors:[],
         newVisitor:{ name: "",surname:"",phone: "",email:"",image:""},
         selectedVisitor:{}, 
-        selectedFile: null 
+        selectedFile: null,
+        imageBytes: "",
                    
     },
     mounted(){
         this.getAllVisitors();
+    },
+    computed : {
+        dataUrl(){
+            return 'data:image/jpeg;base64,';
+            
+        }
     },
     methods: {
 
@@ -25,13 +32,14 @@ var app = new Vue({
 
         onFileSelected(event){
             this.selectedFile = event.target.files[0];
-            console.log(event)
+            
         },
-      
+            
         getAllVisitors(){
             axios.get("http://localhost:8000/CRUD/API/displayAllVisitors.php?action=read").then(function(response){
                 if(response.data.error){
                     app.errorMsg = response.data.message;
+                    return app.imageBytes = "test";   
                 }
                 else{
                     app.visitors = response.data.visitors;
@@ -53,6 +61,7 @@ var app = new Vue({
 
         addVisitor(){
             var formData = app.toFormData(app.newVisitor)
+            formData.append('image',this.selectedFile,this.selectedFile.name)
             axios.post("http://localhost:8000/CRUD/API/createVisitor.php?action=create",formData,{headers:{'Content-Type':'multipart/form-data'}}).then(function(response){
                 app.newVisitor = { name: "",surname:"",phone: "",email:"",image:""};
                 if(response.data.error){
@@ -67,6 +76,7 @@ var app = new Vue({
 
         updateVisitor(){
             var formData = app.toFormData(app.selectedVisitor);
+            formData.append('image',this.selectedFile)
             axios.post("http://localhost:8000/CRUD/API/updateVisitor.php?action=update",formData,{headers:{'Content-Type':'multipart/form-data'}}).then(function(response){
                 app.selectedVisitor = {};
                 if(response.data.error){

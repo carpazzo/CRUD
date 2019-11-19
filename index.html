@@ -53,16 +53,17 @@
             <div class="container-fluid">
                <div class="card-columns">
                     <div class="card bg-dark" style="width: 16rem;" v-for="visitor in visitors">
-                        
                         <!-- to use the image tag here meanwhile ill be leaving an example -->
-                        <img src="./images/companycard.jpg" class="card-img-top" alt="image"></img>
-                        <!-- <img v-bind:src="'data:image/jpge;base64,'"  class="card-img-top" alt="Card Image" > -->
-                        <!-- <img v-bind:src="'data:image/jpge;base64,${visitor.image}'" class="card-img-top" alt="Card Image" > -->
-                        <!-- <img src="data:image/jpeg;base64,'.base64_encode({{ visitor.image }})'"/> -->
-                        <!-- <img src="data:image/jpeg;base64,'.base64_encode( $result[{{ visitor.image }}] ).'"/> -->
-                        <!-- <img src="data:image/jpge;base64",.base64_encode{{ visitor.image }} > -->
+                        <!-- <img src="./images/companycard.jpg" class="card-img-top" alt="image"></img> -->
                         
-                        <p>{{ visitor.image }}</p>
+                        <!-- <img v-bind:src="'data:image/jpge;base64,'+imageBytes" class="card-img-top" alt="Card Image" /> -->
+                        <!-- <img src="'data:image/jpeg;base64,'{{ visitor.image }}"/> -->
+                        <!-- <img src="data:image/jpeg;base64,'.base64_encode( $result[{{ visitor.image }}] ).'"/> -->
+                        <!-- <img src="data:image/jpge;base64",.base64_encode {{ visitor.image }} > -->
+                        <img v-bind:src="dataUrl">
+                       
+                        {{ imageBytes }}
+                        {{ visitor.image }}
                         <div class="card-body text-light">
                             <h5 class="card-title text-center text-capitalize">{{ visitor.name }} {{ visitor.surname }}</h5>
                             <p class="card-text ">Phone: {{ visitor.phone }}</p>
@@ -105,7 +106,7 @@
                         <hr>
                         <div class="from-group">
                             <label>Select Image </label>
-                            <input type="file" name="image" id="file" value="file" @change="onFileSelected">
+                            <input type="file" name="image" @change="onFileSelected">
                         </div>
                         <hr>
                         <div class="form-group">      
@@ -132,21 +133,21 @@
                 <div class="modal-body p-4">
                     <form action="updateVisitor.php" method="post" enctype="multipart/form-data">
                         <div class="form-group">
-                            <input type="text" name="name" class="form-control form-control-lg" v-model="selectedVisitor.name">
+                            <input type="text" name="name" class="form-control form-control-lg" v-model.lazy="selectedVisitor.name">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="surname" class="form-control form-control-lg" v-model="selectedVisitor.surname">
+                            <input type="text" name="surname" class="form-control form-control-lg" v-model.lazy="selectedVisitor.surname">
                         </div>
                         <div class="form-group">
-                            <input type="tel" name="phone" class="form-control form-control-lg" v-model="selectedVisitor.phone">
+                            <input type="tel" name="phone" class="form-control form-control-lg" v-model.lazy="selectedVisitor.phone">
                         </div>
                         <div class="form-group">
-                            <input type="email" name="email" class="form-control form-control-lg" v-model="selectedVisitor.email">    
+                            <input type="email" name="email" class="form-control form-control-lg" v-model.lazy="selectedVisitor.email">    
                         </div>
                         <hr>
                         <div class="form-group">
                             <label>Select Image</label>
-                            <input type="file" name="image" id="file" value="file">
+                            <input type="file" name="image" @change="onFileSelected">
                         </div>
                         <hr>
                         <div class="form-group">
