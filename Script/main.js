@@ -12,7 +12,7 @@ var app = new Vue({
         newVisitor:{ name: "",surname:"",phone: "",email:"",image:""},
         selectedVisitor:{}, 
         selectedFile: null,
-        imageBytes: "",
+        
                    
     },
     mounted(){
@@ -20,8 +20,7 @@ var app = new Vue({
     },
     computed : {
         dataUrl(){
-            return 'data:image/jpeg;base64,';
-            
+            return 'data:image/jpeg;base64';
         }
     },
     methods: {
@@ -38,8 +37,7 @@ var app = new Vue({
         getAllVisitors(){
             axios.get("http://localhost:8000/CRUD/API/displayAllVisitors.php?action=read").then(function(response){
                 if(response.data.error){
-                    app.errorMsg = response.data.message;
-                    return app.imageBytes = "test";   
+                    app.errorMsg = response.data.message;  
                 }
                 else{
                     app.visitors = response.data.visitors;
