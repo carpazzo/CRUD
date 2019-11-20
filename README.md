@@ -4,7 +4,7 @@ the display for error handling bugs sometimes, so still need to implement.
 Overall the bassic functions is in place and working.  
 All the php scripts was tested using Postman  
 
-#Problems 
+#Problems   
 -Images of the cards is not being displayed as intended.
 
 #Improvement Possibilities  
