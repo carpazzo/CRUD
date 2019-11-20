@@ -1,16 +1,18 @@
 # Create Read Update Delete Application  
-Functional application CRUD using PHP, Bootstrap,MySql and Vue.JS  
-Still need to implent upload image for new visitor.   
-The image is encoded but not save in the database :/ ,thats where i got stuck.  
+Functional application CRUD using PHP, Bootstrap,MySql and Vue.JS
 the display for error handling bugs sometimes, so still need to implement.  
 Overall the bassic functions is in place and working.  
 All the php scripts was tested using Postman  
 
-#Improvement Possibilities
+#Problems 
+-Images of the cards is not being displayed as intended.
 
--Working on form validation and error Handling.  
--search bar has been added but has no functionality yet.  
--use vue components, vue Router to scale up the application (This implementation is on the new crud project)    
+#Improvement Possibilities  
+
+-Working on : form validation and error Handling.  
+-working on : images are stored and retrived as base64 encoded, but its not displayed. *Not possible to use string interpolation on img src.(looking for solution)  
+-search bar has been added but has no functionality yet.    
+-use vue cli to scale up the application (This implementation is on the new crud project,wich is a branch of this one)      
  
 
 **Database**   
