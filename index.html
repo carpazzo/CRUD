@@ -53,16 +53,7 @@
             <div class="container-fluid">
                <div class="card-columns">
                     <div class="card bg-dark" style="width: 16rem;" v-for="visitor in visitors">
-                        <!-- to use the image tag here meanwhile ill be leaving an example -->
                         <img src="./images/companycard.jpg" class="card-img-top" alt="image"></img>
-                        
-                        <!-- <img v-bind:src="'data:image/jpge;base64,+imageBytes'" class="card-img-top" alt="Card Image" /> -->
-                        <!-- <img :src="'data:image/jpeg;base64,'+visitor.image" alt="test"/> -->
-                        <!-- <img src="data:image/jpeg;base64,'.base64_encode( $result[{{ visitor.image }}] ).'"/> -->
-                        <!-- <img src="data:image/jpge;base64",.base64_encode {{ visitor.image }} > -->
-                        <!-- <img v-bind:src="dataUrl"> -->
-
-                        {{ visitor.image }}
                         <div class="card-body text-light">
                             <h5 class="card-title text-center text-capitalize">{{ visitor.name }} {{ visitor.surname }}</h5>
                             <p class="card-text ">Phone: {{ visitor.phone }}</p>
